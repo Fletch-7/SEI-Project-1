@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+body {
+  /*grid position*/
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.grid {
+  /*grid*/
+  width: 440px;
+  height: 440px;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: grey;
+}
+
+div.grid-item {
+  /*grid boxes*/
+  width: 40px;
+  height: 40px;
+  border: 1px groove white;
+}
+
+div.grid-item.player {
+  /*player*/
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
