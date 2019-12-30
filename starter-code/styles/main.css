@@ -39,3 +39,7 @@ div.grid-item.player {
   background-repeat: no-repeat;
   background-size: contain;
 }
+
+div.grid-item.active{
+  background-color: red;
+}
