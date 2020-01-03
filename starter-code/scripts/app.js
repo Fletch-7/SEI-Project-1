@@ -6,10 +6,12 @@ function init() {
   const start = document.querySelector('.start')
   const reset = document.querySelector('.reset')
   const squares = []
+  const snakeArray = [0, 1, 2, 3]
+
  
   // Game Variables
   const width = 11 //121 squares
-  let playerIndex = 0
+  let playerIndex = 4
 
  
   // (HOW TO MAKE A SIMPLE GRID)
@@ -18,11 +20,14 @@ function init() {
     square.classList.add('grid-item')
     squares.push(square)
     grid.appendChild(square)
- 
   })
-  squares[playerIndex].classList.add('player')
+  squares[playerIndex].classList.add('snake')
 
-  
+  function addSnake() {
+    snakeArray.map(snake => squares[snake].classList.add('snake'))
+  }
+  addSnake(grid)
+
   function handleKeyDown(e) { //KEYBOARD FUNCTION TO MOVE AROUND THE GRID 
     // console.log(playerIndex % width < width - 1)
     // console.log(e.keyCode)
@@ -49,11 +54,10 @@ function init() {
         break
       default: 
         console.log('player shouldnt move')
-
-        grid.snake = 1
     }
-    squares.forEach(square => square.classList.remove('player'))
-    squares[playerIndex].classList.add('player')
+    
+    squares.forEach(square => square.classList.remove('snake'))
+    squares[playerIndex].classList.add('snake')
 
   }
 
@@ -61,7 +65,6 @@ function init() {
   function generateFood (){
     const randomNumbers = new Set() // create an empty set to push random numbers in to
     while (randomNumbers.size < 1){
-      console.log('hello')
       const randomNumber = Math.floor(Math.random() * 121) // generate a random number between 0 and 49
       randomNumbers.add(randomNumber) // add randomNumber to the end of the randomNumbers set
     }

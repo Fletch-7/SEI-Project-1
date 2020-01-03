@@ -31,8 +31,7 @@ div.grid-item {
   border: 1px groove white;
 }
 
-div.grid-item.player {
-  /*player*/
+div.grid-item.snake {
   background-color: white;
   width: 40px;
   height: 40px;
@@ -41,5 +40,5 @@ div.grid-item.player {
 }
 
 div.grid-item.active{
-  background-color: red;
+  background-color: red; 
 }
