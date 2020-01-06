@@ -37,6 +37,6 @@ div.grid-item.snake {
   background-size: contain;
 }
 
-div.grid-item.active{
+div.grid-item.food{
   background-color: red; 
 }
