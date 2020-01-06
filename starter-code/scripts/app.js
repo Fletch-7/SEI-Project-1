@@ -5,11 +5,13 @@ function init() {
   const reset = document.querySelector('.reset')
   const squares = []
   const snakeArray = [3, 2, 1, 0]
-  let speed = 300
+  console.log(snakeArray)
+  
  
   // Game Variables
   const width = 11 //121 squares
   let direction = 'right'
+  let speed = 300
 
  
   // (HOW TO MAKE A SIMPLE GRID)
@@ -52,10 +54,12 @@ function init() {
     }
 
   }
-  // handleKeyDown()
+  // SNAKE MOVEMENT()
   function moveSnake() {
     if (direction === 'right' && snakeArray[0] % width < width - 1) {
       moveRight()
+    }else {
+      gameEnd()
     }
     if (direction === 'left' && snakeArray[0] % width > 0){
       moveLeft()
@@ -71,10 +75,10 @@ function init() {
   }
  
   function moveRight (){
-    snakeWall()
+    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] + 1)
-    console.log(squares[snakeArray[0]].classList.contains('food'))
+    // console.log(squares[snakeArray[0]].classList.contains('food'))
     if (!squares[snakeArray[0]].classList.contains('food')) {
       snakeArray.pop()
     }
@@ -83,10 +87,10 @@ function init() {
     
   }
   function moveLeft(){
-    snakeWall()
+    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] - 1)
-    console.log(squares[snakeArray[0]].classList.contains('food'))
+    // console.log(squares[snakeArray[0]].classList.contains('food'))
     if (!squares[snakeArray[0]].classList.contains('food')) {
       snakeArray.pop()
     }
@@ -95,10 +99,10 @@ function init() {
     
   }
   function moveDown(){
-    snakeWall()
+    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] + width)
-    console.log(squares[snakeArray[0]].classList.contains('food'))
+    // console.log(squares[snakeArray[0]].classList.contains('food'))
     if (!squares[snakeArray[0]].classList.contains('food')) {
       snakeArray.pop()
     }
@@ -107,7 +111,7 @@ function init() {
    
   }
   function moveUp(){
-    snakeWall()
+    gameEnd()
     removeSnake()
     if (snakeArray[0] > 0) {
       snakeArray.unshift(snakeArray[0] - width)
@@ -124,23 +128,23 @@ function init() {
   
   
 
-  // Snake hits wall
-  function snakeWall(){
+  // SNAKE HITS WALL
+  function gameEnd(){
     
-    if (snakeArray[0] === snakeArray[0] % width < width - 1 < 0 ){
-      window.alert('GAME OVER :(')
+    if (snakeArray[0] === snakeArray[0] % width < width - 1){
+      window.alert('GAME OVER')
       clearGrid()
     } 
     if (snakeArray[0] === snakeArray[0] % width > 0 ){
-      window.alert('GAME OVER :(')
+      window.alert('GAME OVER')
       clearGrid()
     }
     if (snakeArray[0] === snakeArray[0] + width < width * width){
-      window.alert('GAME OVER :(')
+      window.alert('GAME OVER')
       clearGrid()
     }
     if (snakeArray[0] === snakeArray[0] - width >= 0){
-      window.alert('GAME OVER :(')
+      window.alert('GAME OVER')
       clearGrid()
     }
   }
@@ -160,26 +164,15 @@ function init() {
     })
   }
 
-  //Snake Eat Food
-  // function snakeEats(){
-  //   if (snakeArray[0] === 'active')
-  //     squares.classList.remove('active')
-  // }
-  // snakeEats()
-  //(squares[snakeArray[0]].classList.contains('food'))
+  //SNAKE EATS FOOD
   function snakeEats(){
     if (squares[snakeArray[0]].classList.contains('food')) { //square = singular of squares variable
       squares[snakeArray[0]].classList.remove('food')//remove class -> remove color
       generateFood()
-      speed = speed - 100
     } 
   }
     
 
-  
-  
-
-  
   //RESET SECTION
   function clearGrid() {
     location.reload()
@@ -188,7 +181,6 @@ function init() {
 
   //Event Listeners
   window.addEventListener('keydown', handleKeyDown)
-  // start.addEventListener('click', generateFood)
   reset.addEventListener('click', clearGrid)
 }
 
