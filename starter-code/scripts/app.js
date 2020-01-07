@@ -3,15 +3,22 @@ function init() {
   //  DOM Variables
   const grid = document.querySelector('.grid')
   const reset = document.querySelector('.reset')
+  const start = document.querySelector('.start')
+  const scoreSpan = document.querySelector('.score')
+  const playerScore = document.querySelector('.score').innerHTML
   const squares = []
+  console.log(squares)
   const snakeArray = [3, 2, 1, 0]
-  console.log(snakeArray)
+  
+  
   
  
   // Game Variables
   const width = 11 //121 squares
   let direction = 'right'
   let speed = 300
+  let playerP = parseInt(playerScore)
+
 
  
   // (HOW TO MAKE A SIMPLE GRID)
@@ -29,6 +36,7 @@ function init() {
     snakeArray.forEach(snake => squares[snake].classList.remove('snake'))
   }
   addSnake()
+
 
   function handleKeyDown(e) { //KEYBOARD FUNCTION TO MOVE AROUND THE GRID 
     switch (e.keyCode){
@@ -58,24 +66,26 @@ function init() {
   function moveSnake() {
     if (direction === 'right' && snakeArray[0] % width < width - 1) {
       moveRight()
-    }else {
-      gameEnd()
-    }
+    } 
     if (direction === 'left' && snakeArray[0] % width > 0){
       moveLeft()
-      
-    }
+    } 
     if (direction === 'down' && snakeArray[0] + width < width * width){
       moveDown()
-    }
+    } 
     if (direction === 'up' && snakeArray[0] - width >= 0){
       moveUp()
-    }
+    } 
     
   }
+  function startGame(){
+    setInterval(moveSnake, speed)
+    generateFood()
+  }
+
+  
  
   function moveRight (){
-    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] + 1)
     // console.log(squares[snakeArray[0]].classList.contains('food'))
@@ -87,7 +97,6 @@ function init() {
     
   }
   function moveLeft(){
-    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] - 1)
     // console.log(squares[snakeArray[0]].classList.contains('food'))
@@ -99,7 +108,6 @@ function init() {
     
   }
   function moveDown(){
-    gameEnd()
     removeSnake()
     snakeArray.unshift(snakeArray[0] + width)
     // console.log(squares[snakeArray[0]].classList.contains('food'))
@@ -111,7 +119,6 @@ function init() {
    
   }
   function moveUp(){
-    gameEnd()
     removeSnake()
     if (snakeArray[0] > 0) {
       snakeArray.unshift(snakeArray[0] - width)
@@ -122,16 +129,13 @@ function init() {
       addSnake()
     }
   }
-
-  setInterval(moveSnake, speed)
-  generateFood()
   
   
 
   // SNAKE HITS WALL
   function gameEnd(){
     
-    if (snakeArray[0] === snakeArray[0] % width < width - 1){
+    if (snakeArray[0] === snakeArray % width < width - 1){
       window.alert('GAME OVER')
       clearGrid()
     } 
@@ -148,9 +152,6 @@ function init() {
       clearGrid()
     }
   }
- 
-  
-  
 
   //FOOD SECTION
   function generateFood (){
@@ -168,6 +169,8 @@ function init() {
   function snakeEats(){
     if (squares[snakeArray[0]].classList.contains('food')) { //square = singular of squares variable
       squares[snakeArray[0]].classList.remove('food')//remove class -> remove color
+      playerP++
+      scoreSpan.innerHTML = playerP
       generateFood()
     } 
   }
@@ -182,6 +185,7 @@ function init() {
   //Event Listeners
   window.addEventListener('keydown', handleKeyDown)
   reset.addEventListener('click', clearGrid)
+  start.addEventListener('click', startGame )
 }
 
 window.addEventListener('DOMContentLoaded', init)
