@@ -182,6 +182,8 @@ function init() {
       generateFood()
     } 
   }
+
+  //LEVEL UP FUNCTION
     
 
   //RESET SECTION
