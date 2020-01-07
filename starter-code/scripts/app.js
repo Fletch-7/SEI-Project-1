@@ -7,8 +7,11 @@ function init() {
   const scoreSpan = document.querySelector('.score')
   const playerScore = document.querySelector('.score').innerHTML
   const squares = []
+  let intervalId = null
   console.log(squares)
   const snakeArray = [3, 2, 1, 0]
+  console.log(snakeArray)
+  
   
   
   
@@ -79,7 +82,7 @@ function init() {
     
   }
   function startGame(){
-    setInterval(moveSnake, speed)
+    intervalId = setInterval(moveSnake, speed)
     generateFood()
   }
 
@@ -93,6 +96,7 @@ function init() {
       snakeArray.pop()
     }
     snakeEats()
+    gameEnd()
     addSnake()
     
   }
@@ -104,8 +108,9 @@ function init() {
       snakeArray.pop()
     }
     snakeEats()
+    gameEnd()
     addSnake()
-    
+    gameEnd()
   }
   function moveDown(){
     removeSnake()
@@ -115,8 +120,9 @@ function init() {
       snakeArray.pop()
     }
     snakeEats()
+    gameEnd()
     addSnake()
-   
+    gameEnd()
   }
   function moveUp(){
     removeSnake()
@@ -126,7 +132,9 @@ function init() {
         snakeArray.pop()
       }
       snakeEats()
+      gameEnd()
       addSnake()
+      gameEnd()
     }
   }
   
@@ -134,24 +142,12 @@ function init() {
 
   // SNAKE HITS WALL
   function gameEnd(){
-    
-    if (snakeArray[0] === snakeArray % width < width - 1){
-      window.alert('GAME OVER')
-      clearGrid()
-    } 
-    if (snakeArray[0] === snakeArray[0] % width > 0 ){
-      window.alert('GAME OVER')
-      clearGrid()
-    }
-    if (snakeArray[0] === snakeArray[0] + width < width * width){
-      window.alert('GAME OVER')
-      clearGrid()
-    }
-    if (snakeArray[0] === snakeArray[0] - width >= 0){
+    if (snakeArray.slice(1).includes(snakeArray[0])){
       window.alert('GAME OVER')
       clearGrid()
     }
   }
+ 
 
   //FOOD SECTION
   function generateFood (){
@@ -164,13 +160,18 @@ function init() {
       squares[number].classList.add('food') // find the li with the index of the random number and add the class of "active"
     })
   }
+   
 
   //SNAKE EATS FOOD
   function snakeEats(){
     if (squares[snakeArray[0]].classList.contains('food')) { //square = singular of squares variable
       squares[snakeArray[0]].classList.remove('food')//remove class -> remove color
-      playerP++
+      playerP = (playerP + 10)
       scoreSpan.innerHTML = playerP
+      clearInterval(intervalId)
+      speed = speed - 10
+      intervalId = setInterval(moveSnake, speed)
+      console.log(speed)
       generateFood()
     } 
   }
