@@ -11,8 +11,11 @@ html, body {
 body {
   /*grid position*/
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url();
+  background-size: cover;
 }
 
 div.grid {
@@ -40,3 +43,19 @@ div.grid-item.snake {
 div.grid-item.food{
   background-color: red; 
 }
+div.grid-item.wall{
+  background-color: springgreen; 
+}
+div.wrapper{
+  display: flex;
+  flex-flow:column;
+  align-items: center;
+}
+div.info{
+  display: flex;
+  flex-flow:column;
+  align-items: center;
+  padding: 10px;
+}
+
+
