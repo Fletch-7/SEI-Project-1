@@ -16,18 +16,24 @@ body {
   justify-content: center;
   background-image: url();
   background-size: cover;
+  background-position: center;
+  background-image: url(https://i.imgur.com/HvCJy4Y.jpg);
 }
 
 h1{
   font-family: 'Seymour One', sans-serif;
   text-decoration: underline;
+  color: white
 }
-
-h3, button, .score{
+h3{
   font-family: 'Seymour One', sans-serif;
+  color: white
 }
 
-
+ button, .score{
+  font-family: 'Seymour One', sans-serif;
+  
+}
 
 div.grid {
   /*grid*/
@@ -53,7 +59,9 @@ div.grid-item.snake {
 
 div.grid-item.food{
   background-color: red; 
+  animation-name: pulse 3s infinite;
 }
+
 div.grid-item.wall{
   background-color: springgreen; 
 }
@@ -101,5 +109,3 @@ body > div > div{
   align-items: center;
   font-family: 'Seymour One', sans-serif;
 }
-
-

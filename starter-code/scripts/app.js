@@ -28,7 +28,8 @@ function init() {
     })
   }
   createGrid()
-  console.log(snakeArray)
+
+
   function addSnake() {
     snakeArray.forEach(snake => squares[snake].classList.add('snake'))
   }
@@ -203,13 +204,6 @@ function init() {
     startGame()
   }
 
-  //LEVEL UP FUNCTION
-    
-
-  //RESET SECTION
-  // function clearGrid() {
-  //   location.reload()
-  // }
 
   //Event Listeners
   window.addEventListener('keydown', handleKeyDown)
