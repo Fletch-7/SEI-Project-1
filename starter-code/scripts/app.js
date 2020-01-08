@@ -6,33 +6,35 @@ function init() {
   const start = document.querySelector('.start')
   const scoreSpan = document.querySelector('.score')
   const playerScore = document.querySelector('.score').innerHTML
-  const squares = []
+  let squares = []
   let intervalId = null
-  const snakeArray = [3, 2, 1, 0]
+  let snakeArray = [3, 2, 1, 0]
   
  
   // Game Variables
   const width = 11 //121 squares
   let direction = 'right'
-  let speed = 250
+  let speed = 300
   let playerP = parseInt(playerScore)
 
  
   // (HOW TO MAKE A SIMPLE GRID)
-  Array(width * width).join('.').split('.').forEach(() => {
-    const square = document.createElement('div')
-    square.classList.add('grid-item')
-    squares.push(square)
-    grid.appendChild(square)
-  })
-
+  function createGrid(){
+    Array(width * width).join('.').split('.').forEach(() => {
+      const square = document.createElement('div')
+      square.classList.add('grid-item')
+      squares.push(square)
+      grid.appendChild(square)
+    })
+  }
+  createGrid()
+  console.log(snakeArray)
   function addSnake() {
     snakeArray.forEach(snake => squares[snake].classList.add('snake'))
   }
   function removeSnake(){
     snakeArray.forEach(snake => squares[snake].classList.remove('snake'))
   }
-  addSnake()
 
 
   function handleKeyDown(e) { //KEYBOARD FUNCTION TO MOVE AROUND THE GRID 
@@ -62,25 +64,28 @@ function init() {
   // SNAKE MOVEMENT()
   function moveSnake() {
     if (direction === 'right' && snakeArray[0] % width < width - 1) {
-      direction !== 'left'
       moveRight()
+      // direction !== 'left'
     } else if (direction === 'left' && snakeArray[0] % width > 0){
-      direction !== 'right'
       moveLeft()
+      // direction !== 'right'
     } else if (direction === 'down' && snakeArray[0] + width < width * width){
-      direction !== 'up'
       moveDown()
+      // direction !== 'up'
     } else if (direction === 'up' && snakeArray[0] - width >= 0){
-      direction !== 'down'
       moveUp()
+      // direction !== 'down'
     } else {
       clearInterval(intervalId)
-      grid.innerHTML = `<div><p>YOU LOSE, YOUR SCORE WAS ${playerP}</p></div>`
+      grid.innerHTML = `<div><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
       console.log('player would of lost')
     }
     
   }
   function startGame(){
+    console.log('start')
+    speed = 300
+    addSnake()
     intervalId = setInterval(moveSnake, speed)
     generateFood()
   }
@@ -138,12 +143,12 @@ function init() {
   // SNAKE HITS WALL
   function gameEnd(){
     if (snakeArray.slice(1).includes(snakeArray[0])){
-      grid.innerHTML = `<div><p>YOU LOSE, YOUR SCORE WAS ${playerP}</p></div>`
+      grid.innerHTML = `<div id="lose"><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
       // clearGrid()
     }
-    if (squares[snakeArray[0]].classList.contains('wall')){
-      grid.innerHTML = `<div><p>YOU LOSE, YOUR SCORE WAS ${playerP}</p></div>`
-    }
+    // if (squares[snakeArray[0]].classList.contains('wall')){
+    //   grid.innerHTML = `<div id="lose"><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+    // }
   }
  
 
@@ -164,7 +169,6 @@ function init() {
     while (snakeArray.includes(randomNumber)) {
       randomNumber = Math.floor(Math.random() * (width * width))
     }
-
     squares[randomNumber].classList.add('food')
   }
    
@@ -183,17 +187,33 @@ function init() {
     } 
   }
 
+  function clearGrid(){
+    grid.innerHTML = ''
+    scoreSpan.innerHTML = 0
+    squares = []
+    snakeArray = [3, 2, 1, 0]
+    direction = 'right'
+    playerP = 0
+  }
+  
+  //Rebuild Grid
+  function resetGame(){
+    clearGrid()
+    createGrid()
+    startGame()
+  }
+
   //LEVEL UP FUNCTION
     
 
   //RESET SECTION
-  function clearGrid() {
-    location.reload()
-  }
+  // function clearGrid() {
+  //   location.reload()
+  // }
 
   //Event Listeners
   window.addEventListener('keydown', handleKeyDown)
-  reset.addEventListener('click', clearGrid)
+  reset.addEventListener('click', resetGame)
   start.addEventListener('click', startGame )
 
 }

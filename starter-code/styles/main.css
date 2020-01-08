@@ -18,6 +18,17 @@ body {
   background-size: cover;
 }
 
+h1{
+  font-family: 'Seymour One', sans-serif;
+  text-decoration: underline;
+}
+
+h3, button, .score{
+  font-family: 'Seymour One', sans-serif;
+}
+
+
+
 div.grid {
   /*grid*/
   width: 440px;
@@ -56,6 +67,39 @@ div.info{
   flex-flow:column;
   align-items: center;
   padding: 10px;
+}
+body > div > div > div > p{
+  color:white;
+  font-weight: bold;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+	0% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgb(3, 241, 3);
+	}
+
+	70% {
+		transform: scale(1);
+		box-shadow: 0 0 0 10px rgb(3, 241, 3);
+	}
+
+	100% {
+		transform: scale(0.95);
+		box-shadow: 0 0 0 0 rgb(3, 241, 3);
+	}
+}
+
+body > div > div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Seymour One', sans-serif;
 }
 
 
