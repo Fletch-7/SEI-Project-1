@@ -4,11 +4,14 @@ function init() {
   const grid = document.querySelector('.grid')
   const reset = document.querySelector('.reset')
   const start = document.querySelector('.start')
+  const stopiStart = document.querySelector('.stopStart')
   const scoreSpan = document.querySelector('.score')
   const playerScore = document.querySelector('.score').innerHTML
   let squares = []
   let intervalId = null
   let snakeArray = [3, 2, 1, 0]
+  let running = false
+
   
  
   // Game Variables
@@ -77,16 +80,19 @@ function init() {
       moveUp()
       // direction !== 'down'
     } else {
+      removeSnake()
       clearInterval(intervalId)
-      grid.innerHTML = `<div><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+      grid.innerHTML = `<div><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p><br><p> press "Reset" to Play Again</p></div>`
+      storeScores()
       console.log('player would of lost')
+      
     }
     
   }
   function startGame(){
     console.log('start')
-    speed = 300
     addSnake()
+    speed = 300
     intervalId = setInterval(moveSnake, speed)
     generateFood()
   }
@@ -144,7 +150,8 @@ function init() {
   // SNAKE HITS WALL
   function gameEnd(){
     if (snakeArray.slice(1).includes(snakeArray[0])){
-      grid.innerHTML = `<div id="lose"><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+      grid.innerHTML = `<div id="lose"><p> YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+      storeScores()
       // clearGrid()
     }
     // if (squares[snakeArray[0]].classList.contains('wall')){
@@ -173,7 +180,6 @@ function init() {
     squares[randomNumber].classList.add('food')
   }
    
-
   //SNAKE EATS FOOD
   function snakeEats(){
     if (squares[snakeArray[0]].classList.contains('food')) { //square = singular of squares variable
@@ -204,11 +210,74 @@ function init() {
     startGame()
   }
 
+  //PAUSE
+
+  function stopStart(){
+    console.log('hi')
+    if (!running) {
+      stopStart.innerHTML = 'Pause' 
+      clearInterval(intervalId)
+      running = true 
+    } else {
+      intervalId = setInterval(moveSnake, speed) 
+      stopStart.innerHTML = 'Resume' 
+      running = false
+    }
+  }
+
+  //HI SCORE
+
+  let storedHiScore = localStorage.getItem('storedHiScore') ? JSON.parse(localStorage.getItem('storedHiScore')) : null
+  const highScore = document.querySelector('.hiScore')
+  const data = JSON.parse(localStorage.getItem('storedHiScore'))
+  // Function to set up your page to display your high score  
+  function hiScoreCreate() {
+    if ( storedHiScore) {
+      highScore.innerHTML = storedHiScore
+    }
+    // //if the div is already there then just update it
+    // if (storedHiScore) {
+    //   hiScore.innerHTML = storedHiScore
+    // } else {
+    //   const hiScore = document.createElement('div')
+    //   hiScore.classList.add('hi-score')
+    //   hiScore.innerHTML = storedHiScore
+    //   highScore.appendChild(hiScore)  
+    // }
+    // const hiScore = document.createElement('div')
+    // hiScore.classList.add('hi-score')
+    
+    // highScore.appendChild(hiScore)
+  }
+  // Function to store your score into local storage - it's up to you at what point in the game to call this function
+  function storeScores() {
+    if (playerP > storedHiScore) { // if the current points value is higher than the value stored in local storage
+      storedHiScore = playerP // assign storedHiScore to equal the current value of points
+      localStorage.setItem('storedHiScore', JSON.stringify(storedHiScore)) // set storedHiScore into local storage
+      // this is a key value pair - you are setting the key above and then giving it the value of your latest 
+      // high score
+      hiScoreCreate() // this will enable you to display the score immediately if needed
+    }
+  }
+  // Create a function to check if there is any data in local storage when the page is loaded, if so - 
+  // display this data using the hiScoreCreate function, otherwise - do nothing.
+  // Invoke this function immediately so that it is run as soon as the DOM content is loaded   
+  function displayHiScore() {
+    data ? hiScoreCreate(data) : null
+  }
+  displayHiScore()
+  // If you ever want to reset the data - you can do this in the console - localStorage.clear()
+  // or you can create a function and invoke localStorage.clear() within it - if you want the user to have 
+  // control over what is stored. 
+ 
+  
+  
 
   //Event Listeners
   window.addEventListener('keydown', handleKeyDown)
   reset.addEventListener('click', resetGame)
   start.addEventListener('click', startGame )
+  stopiStart.addEventListener('click', stopStart)
 
 }
 

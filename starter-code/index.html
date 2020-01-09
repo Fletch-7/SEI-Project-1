@@ -8,16 +8,20 @@
     <title>WDI Project 1</title>
   </head>
   <body>
-    <header>
-      <h1>Snake I</h1>
-    </header>
-    <footer class="wrapper">
+    <div class="wrapper">
+      <h1>Snake</h1>
+      <div class="hi-score-container">Record Score: <span class="hiScore"></span></div>
+      <p>Try and gain as many points before going into the wall or yourself</p>
     <div class="grid">
     </div>
-    <div class="info">
-    <button class="start">Start</button>
-    <button class="reset">Reset</button>
-    <h3>Score: <span class="score">0</span></h3>
-  </div>
+    <div class="info" id="info">
+      <button class="start">Start</button>
+      <button class="reset">Reset</button>
+      <button class="stopStart">Pause/Resume</button>
+    </div>
+    <footer><h3>Score: <span class="score">0</span></h3></footer>
+  
+
+
   </body>
 </html>

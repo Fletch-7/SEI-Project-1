@@ -2,37 +2,50 @@
   box-sizing: border-box;
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
   height: 100vh;
+  width: 100vw;
 }
 
 body {
   /*grid position*/
+  margin: 0;
+  padding: 0;
+  height: 98vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-image: url();
+  align-self: flex-start;
   background-size: cover;
   background-position: center;
   background-image: url(https://i.imgur.com/HvCJy4Y.jpg);
 }
 
-h1{
+h1, h2{
   font-family: 'Seymour One', sans-serif;
   text-decoration: underline;
   color: white
 }
-h3{
+p{
   font-family: 'Seymour One', sans-serif;
   color: white
 }
-
+h3, .hiScore{
+  font-family: 'Seymour One', sans-serif;
+  color: white;
+  font-size: 30px
+}
+.hi-score-container{
+  font-family: 'Seymour One', sans-serif;
+  color: white;
+  font-size: 30px
+}
  button, .score{
   font-family: 'Seymour One', sans-serif;
-  
+  width: 140px;
+  height: 40px;
 }
 
 div.grid {
@@ -62,7 +75,7 @@ div.grid-item.food{
   animation-name: pulse 3s infinite;
 }
 
-div.grid-item.wall{
+div.grid-item.poison{
   background-color: springgreen; 
 }
 div.wrapper{
@@ -78,6 +91,7 @@ div.info{
 }
 body > div > div > div > p{
   color:white;
+  font-family: 'Seymour One', sans-serif;
   font-weight: bold;
   font-size: 15px;
   display: flex;
@@ -89,18 +103,22 @@ body > div > div > div > p{
 @keyframes pulse {
 	0% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgb(3, 241, 3);
 	}
 
 	70% {
 		transform: scale(1);
-		box-shadow: 0 0 0 10px rgb(3, 241, 3);
 	}
 
 	100% {
 		transform: scale(0.95);
-		box-shadow: 0 0 0 0 rgb(3, 241, 3);
-	}
+  }
+}
+
+#info{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  justify-content: space-evenly;
 }
 
 body > div > div{
@@ -108,4 +126,14 @@ body > div > div{
   justify-content: center;
   align-items: center;
   font-family: 'Seymour One', sans-serif;
+}
+
+.hiScore, .hi-score-container{
+  color: white;
+  font-family: 'Seymour One', sans-serif;
+  margin-right: 5px;
+}
+
+.start, .reset, .stopStart{
+  margin: 10px;
 }
