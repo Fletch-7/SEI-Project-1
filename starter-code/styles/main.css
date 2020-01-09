@@ -26,7 +26,8 @@ body {
 h1, h2{
   font-family: 'Seymour One', sans-serif;
   text-decoration: underline;
-  color: white
+  color: white;
+  font-size: 40px;
 }
 p{
   font-family: 'Seymour One', sans-serif;
@@ -55,29 +56,43 @@ div.grid {
   height: 440px;
   display: flex;
   flex-wrap: wrap;
-  background-color: grey;
+  background-color: black;
 }
 
 div.grid-item {
   /*grid boxes*/
   width: 40px;
   height: 40px;
-  border: 1px groove white;
+  /* border: 1px groove grey; */
 }
 
 div.grid-item.snake {
   background-color: white;
   background-repeat: no-repeat;
   background-size: contain;
+  border-radius: 50%;
 }
 
 div.grid-item.food{
-  background-color: red; 
-  animation-name: pulse 3s infinite;
+  background-color:springgreen; 
+  border-radius: 25%;
+  animation: pulse 3s infinite;
 }
+@keyframes pulse {
+	0% {
+		transform: scale(0);
+		box-shadow: 0 0 0 0 springgreen;
+	}
 
-div.grid-item.poison{
-  background-color: springgreen; 
+	70% {
+		transform: scale(1);
+		box-shadow: 20 20 20 20px springgreen;
+	}
+
+	100% {
+		transform: scale(0);
+		box-shadow: 0 0 0 0 springgreen;
+	}
 }
 div.wrapper{
   display: flex;

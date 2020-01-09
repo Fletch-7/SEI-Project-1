@@ -11,13 +11,13 @@ function init() {
   let intervalId = null
   let snakeArray = [3, 2, 1, 0]
   let running = false
+  let speed = 300
 
   
  
   // Game Variables
   const width = 11 //121 squares
   let direction = 'right'
-  let speed = 300
   let playerP = parseInt(playerScore)
 
  
@@ -151,6 +151,7 @@ function init() {
   function gameEnd(){
     if (snakeArray.slice(1).includes(snakeArray[0])){
       grid.innerHTML = `<div id="lose"><p> YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+      clearInterval(intervalId)
       storeScores()
       // clearGrid()
     }
