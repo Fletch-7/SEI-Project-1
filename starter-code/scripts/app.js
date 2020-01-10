@@ -92,6 +92,7 @@ function init() {
   function startGame(){
     console.log('start')
     addSnake()
+    clearInterval(intervalId)
     speed = 300
     intervalId = setInterval(moveSnake, speed)
     generateFood()
@@ -202,6 +203,7 @@ function init() {
     snakeArray = [3, 2, 1, 0]
     direction = 'right'
     playerP = 0
+    clearInterval(intervalId)
   }
   
   //Rebuild Grid
