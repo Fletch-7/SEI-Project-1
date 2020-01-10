@@ -76,23 +76,20 @@ div.grid-item.snake {
 
 div.grid-item.food{
   background-color:springgreen; 
-  /* border-radius: 25%; */
+   border-radius: 99%; 
   animation: pulse 3s infinite;
 }
 @keyframes pulse {
 	0% {
-		transform: scale(0);
-		box-shadow: 0 0 0 0 springgreen;
+		transform: scale(0.95);
 	}
 
-	70% {
+	50% {
 		transform: scale(1);
-		box-shadow: 20 20 20 20px springgreen;
 	}
 
 	100% {
-		transform: scale(0);
-		box-shadow: 0 0 0 0 springgreen;
+		transform: scale(0.95);
 	}
 }
 div.wrapper{
