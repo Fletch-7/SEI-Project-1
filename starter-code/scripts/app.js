@@ -150,7 +150,7 @@ function init() {
   // SNAKE HITS WALL
   function gameEnd(){
     if (snakeArray.slice(1).includes(snakeArray[0])){
-      grid.innerHTML = `<div id="lose"><p> YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
+      grid.innerHTML = `<div id="lose"><p> YOU LOSE! YOUR SCORE WAS ${playerP}</p><br><p> press "Reset" to Play Again</p></div>`
       clearInterval(intervalId)
       storeScores()
       // clearGrid()

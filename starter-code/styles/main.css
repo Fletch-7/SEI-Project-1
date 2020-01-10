@@ -31,7 +31,8 @@ h1, h2{
 }
 p{
   font-family: 'Seymour One', sans-serif;
-  color: white
+  color: white;
+
 }
 h3, .hiScore{
   font-family: 'Seymour One', sans-serif;
@@ -75,7 +76,7 @@ div.grid-item.snake {
 
 div.grid-item.food{
   background-color:springgreen; 
-  border-radius: 25%;
+  /* border-radius: 25%; */
   animation: pulse 3s infinite;
 }
 @keyframes pulse {
@@ -113,6 +114,7 @@ body > div > div > div > p{
   display: flex;
   justify-content: center;
   align-items: center;
+  color: springgreen;
   animation: pulse 2s infinite;
 }
 
