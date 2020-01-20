@@ -58,13 +58,14 @@ div.grid {
   display: flex;
   flex-wrap: wrap;
   background-color: black;
+ 
 }
 
 div.grid-item {
   /*grid boxes*/
   width: 40px;
   height: 40px;
-  /* border: 1px groove grey; */
+  border: 1px groove grey;
 }
 
 div.grid-item.snake {
@@ -77,11 +78,13 @@ div.grid-item.snake {
 div.grid-item.food{
   background-color:springgreen; 
    border-radius: 99%; 
+   width:35px;
+   height:35px;
   animation: pulse 3s infinite;
 }
 @keyframes pulse {
 	0% {
-		transform: scale(0.95);
+		transform: scale(0.5);
 	}
 
 	50% {
@@ -89,7 +92,7 @@ div.grid-item.food{
 	}
 
 	100% {
-		transform: scale(0.95);
+		transform: scale(0.5);
 	}
 }
 div.wrapper{
