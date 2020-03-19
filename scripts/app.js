@@ -14,13 +14,13 @@ function init() {
   let speed = 300
 
   
- 
+
   // Game Variables
   const width = 11 //121 squares
   let direction = 'right'
   let playerP = parseInt(playerScore)
 
- 
+
   // (HOW TO MAKE A SIMPLE GRID)
   function createGrid(){
     Array(width * width).join('.').split('.').forEach(() => {
@@ -99,7 +99,7 @@ function init() {
   }
 
   
- 
+
   function moveRight (){
     removeSnake()
     snakeArray.unshift(snakeArray[0] + 1)
@@ -160,7 +160,7 @@ function init() {
     //   grid.innerHTML = `<div id="lose"><p>YOU LOSE! YOUR SCORE WAS ${playerP}</p></div>`
     // }
   }
- 
+
 
   //FOOD SECTION
   function generateFood (){
@@ -181,7 +181,7 @@ function init() {
     }
     squares[randomNumber].classList.add('food')
   }
-   
+
   //SNAKE EATS FOOD
   function snakeEats(){
     if (squares[snakeArray[0]].classList.contains('food')) { //square = singular of squares variable
@@ -272,7 +272,7 @@ function init() {
   // If you ever want to reset the data - you can do this in the console - localStorage.clear()
   // or you can create a function and invoke localStorage.clear() within it - if you want the user to have 
   // control over what is stored. 
- 
+
   
   
 
@@ -285,4 +285,3 @@ function init() {
 }
 
 window.addEventListener('DOMContentLoaded', init)
- 

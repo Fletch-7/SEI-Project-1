@@ -45,7 +45,7 @@ h3, .hiScore{
   color: white;
   font-size: 30px
 }
- button, .score{
+button, .score{
   font-family: 'Seymour One', sans-serif;
   width: 140px;
   height: 40px;
@@ -58,7 +58,6 @@ div.grid {
   display: flex;
   flex-wrap: wrap;
   background-color: black;
- 
 }
 
 div.grid-item {
@@ -72,14 +71,14 @@ div.grid-item.snake {
   background-color: white;
   background-repeat: no-repeat;
   background-size: contain;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 div.grid-item.food{
   background-color:springgreen; 
-   border-radius: 99%; 
-   width:35px;
-   height:35px;
+  border-radius: 99%; 
+  /* width:35px;
+  height:35px; */
   animation: pulse 3s infinite;
 }
 @keyframes pulse {
