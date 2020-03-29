@@ -4,7 +4,7 @@ This was my first project built whilst studying the Software Engineering Immersi
 
 This game was built in one week during Week 4 of the course.
 
-# Snake 2
+# Snake I
 
 ## Brief
 - **Render a game in the browser**
@@ -27,7 +27,7 @@ This project was built using the following technologies.
 + 1.0 - This game will not be updated which is staying true to the challenge of building it in one week. This also is to serve as a benchmark for how much I have improved since the date (10/01/20) this was submitted, which was three teaching weeks into the course. Any improvements stated to be made to it will be done so in a follow up project.
 
 ## Deployment
-The game is deployed utilising GitHub Pages and it can be found here via this link - [Snake](http://bit.ly/git-snake)
+The game is deployed utilising GitHub Pages and it can be found here via this link - [Snake I](http://bit.ly/git-snake)
 
 ## Getting Started
 If you would like to fork/clone this game to your own repository, please feel free to do so. 
